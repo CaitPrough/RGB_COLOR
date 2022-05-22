@@ -16,10 +16,10 @@ from easygui import *
 from PIL import Image, ImageDraw
 
 # authorize to tweet
-consumer_key = 'x'
-consumer_secret_key = 'x'
-access_token = 'x'
-access_token_secret = 'x'
+consumer_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+consumer_secret_key = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'
+access_token = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
+access_token_secret = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
 auth.set_access_token(access_token, access_token_secret)
@@ -144,22 +144,38 @@ def play():
     n = text_file.write("-\n")
     
  
-    def color_image(color_rgb):
-        image = Image.new('RGB', (800, 500), color=(color_rgb))
+    def color_image(x):
+        image = Image.new('RGB', (800, 500), color=(x))
         d = ImageDraw.Draw(image)
 
         image.save('color_image.png')
+        
+    def color_image_guess(z):
+        image = Image.new('RGB', (800, 500), color=(z))
+        d = ImageDraw.Draw(image)
+
+        image.save('color_image2.png')
 
 
-    def tweet(x,y):
+    def tweet(x,y,z):
         
         color_image(x)
+        color_image_guess(z)
     
-        media = api.media_upload("color_image.png")
+        # media = api.media_upload("color_image.png")
+        # media2 = api.media_upload("Color_image2.png")
 
-        api.update_status(f'{x} / {y}', media_ids=[media.media_id])
+        files = ['color_image.png', 'Color_image2.png']
+        media_ids = []
+        for file in files:
+            res = api.media_upload(file)
+            media_ids.append(res.media_id)
 
-    tweet(color, hex_color)
+        # m_ids = [media.media_id], [media2.media_ids]
+        
+        api.update_status(f'{x} / {y} \n Round Score: {final_round} \n Guess: {color1}' , media_ids=media_ids)
+
+    tweet(color, hex_color, color1)
 
     again()
 
