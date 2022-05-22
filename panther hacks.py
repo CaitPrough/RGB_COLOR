@@ -16,10 +16,10 @@ from easygui import *
 from PIL import Image, ImageDraw
 
 # authorize to tweet
-consumer_key = 'yvm5g0dk7LfP9iXQdgRjSLaTZ'
-consumer_secret_key = 'BwoMmm3RmugkS0ppSl6aBw2v8aaij3fl2GKstpulBrD7TSJzT0'
-access_token = '1421127678514638850-ZhNiNfRpFzyo3E8ponpq3WbLnVGkgX'
-access_token_secret = 'hOqPLbZKydEz8oUw4gDsyoIAizux3K05EGi8htIYpTz6L'
+consumer_key = 'x'
+consumer_secret_key = 'x'
+access_token = 'x'
+access_token_secret = 'x'
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret_key)
 auth.set_access_token(access_token, access_token_secret)
